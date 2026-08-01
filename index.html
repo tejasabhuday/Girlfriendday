@@ -15,11 +15,6 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- AUDIO PLAYER                                -->
   <!-- ═══════════════════════════════════════════ -->
-  <!--
-    Song: "Take a Look at My Girlfriend" / "Girlfriend" by Superchick
-    To use: Download the MP3, rename it "girlfriend.mp3",
-    and place it in this folder alongside index.html.
-  -->
   <audio id="bg-audio" loop preload="none">
     <source src="girlfriend.mp3" type="audio/mpeg" />
     <source src="https://ia801503.us.archive.org/15/items/GymClassHeroesCupidsChokehold/Gym%20Class%20Heroes%20-%20Cupid%27s%20Chokehold.mp3" type="audio/mpeg" />
@@ -31,13 +26,15 @@
   </button>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- NAV DOTS                                    -->
+  <!-- NAV DOTS (6 Pages)                          -->
   <!-- ═══════════════════════════════════════════ -->
   <nav id="page-dots" aria-label="Page navigation">
     <button class="dot active" data-page="0" aria-label="Go to Page 1: The Connection"></button>
     <button class="dot" data-page="1" aria-label="Go to Page 2: Our Moments"></button>
     <button class="dot" data-page="2" aria-label="Go to Page 3: Our Space"></button>
-    <button class="dot" data-page="3" aria-label="Go to Page 4: For You"></button>
+    <button class="dot" data-page="3" aria-label="Go to Page 4: Why I Love You"></button>
+    <button class="dot" data-page="4" aria-label="Go to Page 5: Love Coupons"></button>
+    <button class="dot" data-page="5" aria-label="Go to Page 6: For You"></button>
   </nav>
 
   <!-- ═══════════════════════════════════════════ -->
@@ -282,7 +279,7 @@
               </button>
             </div>
             <div id="game-spin-result" class="spin-result" aria-live="polite"></div>
-            <p class="card-sub">Board games, video games, or just vibes — the wheel decides.</p>
+            <p class="card-sub">Table Tennis, Minecraft, or Skribbl — the wheel decides.</p>
           </div>
 
           <!-- Countdown -->
@@ -311,24 +308,101 @@
                 </div>
               </div>
             </div>
-            <p class="card-sub">Until Greater Noida and Bangalore are in the same room again. 🗓️</p>
+            <p class="card-sub">Until Greater Noida and Bangalore are in the same room again on January 5th! 🗓️</p>
           </div>
 
         </div>
 
         <div class="page-nav-row">
-          <button class="nav-pill" onclick="navigateTo(3)">FOR YOU →</button>
+          <button class="nav-pill" onclick="navigateTo(3)">WHY I LOVE YOU →</button>
         </div>
       </div>
     </section>
 
     <!-- ─────────────────────────── -->
-    <!-- PAGE 4: FOR YOU             -->
+    <!-- PAGE 4: WHY I LOVE YOU      -->
     <!-- ─────────────────────────── -->
-    <section id="page-4" class="page" aria-label="For You">
-      <div class="page-content envelope-content">
+    <section id="page-4" class="page" aria-label="Why I Love You">
+      <div class="page-content love-generator-content">
         <div class="section-header">
           <p class="section-tag">page 04</p>
+          <h2 class="section-title">WHY I LOVE YOU</h2>
+          <p class="section-sub">Tap below for endless reasons 💖</p>
+        </div>
+
+        <div class="love-generator-card">
+          <div id="heart-container" class="heart-container"></div>
+          <div class="reason-badge">REASON #<span id="reason-num">1</span></div>
+          <div class="reason-display" id="reason-display">
+            "Your smile on late-night calls makes every single mile disappear instantly."
+          </div>
+          <button id="reason-btn" class="cta-btn love-btn" onclick="generateReason()">
+            <span>ANOTHER REASON 💖</span>
+          </button>
+        </div>
+
+        <div class="page-nav-row">
+          <button class="nav-pill" onclick="navigateTo(4)">LOVE COUPONS →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── -->
+    <!-- PAGE 5: LOVE COUPONS        -->
+    <!-- ─────────────────────────── -->
+    <section id="page-5" class="page" aria-label="Love Coupons">
+      <div class="page-content coupons-content">
+        <div class="section-header">
+          <p class="section-tag">page 05</p>
+          <h2 class="section-title">LOVE COUPONS</h2>
+          <p class="section-sub">Redeemable anytime (especially when we meet in Jan) 🎟️</p>
+        </div>
+
+        <div class="coupons-grid">
+          
+          <div class="coupon-card" id="coupon-1">
+            <div class="coupon-tag">TICKET #01</div>
+            <h3 class="coupon-title">🍿 Movie Night Master Pass</h3>
+            <p class="coupon-desc">You pick the movie, no questions asked (even if it's a cheesy rom-com)!</p>
+            <button class="redeem-btn" onclick="redeemCoupon(1)">REDEEM COUPON</button>
+          </div>
+
+          <div class="coupon-card" id="coupon-2">
+            <div class="coupon-tag">TICKET #02</div>
+            <h3 class="coupon-title">🏆 Win Any Argument Free</h3>
+            <p class="coupon-desc">Instant victory ticket for when you want to be 100% right automatically.</p>
+            <button class="redeem-btn" onclick="redeemCoupon(2)">REDEEM COUPON</button>
+          </div>
+
+          <div class="coupon-card" id="coupon-3">
+            <div class="coupon-tag">TICKET #03</div>
+            <h3 class="coupon-title">📸 Photobooth Session</h3>
+            <p class="coupon-desc">Unlimited photobooth pictures & kisses when we meet in January!</p>
+            <button class="redeem-btn" onclick="redeemCoupon(3)">REDEEM COUPON</button>
+          </div>
+
+          <div class="coupon-card" id="coupon-4">
+            <div class="coupon-tag">TICKET #04</div>
+            <h3 class="coupon-title">🍕 Late Night Food Order</h3>
+            <p class="coupon-desc">Your favorite craving delivered directly to your doorstep on me!</p>
+            <button class="redeem-btn" onclick="redeemCoupon(4)">REDEEM COUPON</button>
+          </div>
+
+        </div>
+
+        <div class="page-nav-row">
+          <button class="nav-pill" onclick="navigateTo(5)">FOR YOU →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── -->
+    <!-- PAGE 6: FOR YOU             -->
+    <!-- ─────────────────────────── -->
+    <section id="page-6" class="page" aria-label="For You">
+      <div class="page-content envelope-content">
+        <div class="section-header">
+          <p class="section-tag">page 06</p>
           <h2 class="section-title">FOR YOU</h2>
         </div>
 

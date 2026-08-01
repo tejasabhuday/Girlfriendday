@@ -18,7 +18,7 @@ const COUNTDOWN_TARGET = '2027-01-05T12:00:00'; // Set to January 5, 2027
    ───────────────────────────────────────────────── */
 
 let currentPage = 0;
-const totalPages = 4;
+const totalPages = 6;
 const pages = document.querySelectorAll('.page');
 const dots  = document.querySelectorAll('.dot');
 
@@ -42,7 +42,7 @@ function navigateTo(index) {
 
   if (index === 1) initTimeline();
   if (index === 2) { drawWheel(); drawGameWheel(); initCountdown(); }
-  if (index === 3) initEnvelopePage();
+  if (index === 5) initEnvelopePage();
 }
 
 dots.forEach((dot, i) => {
@@ -579,6 +579,85 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/* ─────────────────────────────────────────────────
+   PAGE 4 — WHY I LOVE YOU GENERATOR
+   ───────────────────────────────────────────────── */
+
+const LOVE_REASONS = [
+  "Your smile on late-night calls makes every single mile disappear instantly.",
+  "How you get so passionate and adorable when telling me about your day.",
+  "The way your face lit up with your new haircut on video call.",
+  "How photogenic we look together, especially in photobooths!",
+  "The fact that even 480p screen quality can't hide how stunning you are.",
+  "How we turn simple virtual dates into our favorite memories.",
+  "Your voice is literally my favorite sound in the whole world.",
+  "Because you make counting down the days to January completely worth it.",
+  "The way you make me laugh without even trying.",
+  "Simply because you're you, and you're mine. ❤️"
+];
+
+let currentReasonIdx = 0;
+
+function generateReason() {
+  const display = document.getElementById('reason-display');
+  const badge = document.getElementById('reason-num');
+  const container = document.getElementById('heart-container');
+  if (!display || !badge) return;
+
+  currentReasonIdx = (currentReasonIdx + 1) % LOVE_REASONS.length;
+
+  display.style.opacity = '0';
+  display.style.transform = 'scale(0.95)';
+
+  setTimeout(() => {
+    badge.textContent = currentReasonIdx + 1;
+    display.textContent = `"${LOVE_REASONS[currentReasonIdx]}"`;
+    display.style.opacity = '1';
+    display.style.transform = 'scale(1)';
+  }, 200);
+
+  // Burst hearts animation
+  if (container) {
+    for (let i = 0; i < 5; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'heart-particle';
+      heart.textContent = ['💖', '💕', '💗', '❤️', '🌸'][Math.floor(Math.random() * 5)];
+      heart.style.left = `${Math.random() * 80 + 10}%`;
+      heart.style.top = `${Math.random() * 40 + 40}%`;
+      container.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 1500);
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────
+   PAGE 5 — LOVE COUPONS
+   ───────────────────────────────────────────────── */
+
+function redeemCoupon(id) {
+  const card = document.getElementById(`coupon-${id}`);
+  if (!card) return;
+
+  const btn = card.querySelector('.redeem-btn');
+  if (!btn || btn.classList.contains('redeemed')) return;
+
+  btn.classList.add('redeemed');
+  btn.textContent = 'REDEEMED ✓';
+
+  // Confetti / floating hearts burst
+  for (let i = 0; i < 8; i++) {
+    const heart = document.createElement('span');
+    heart.className = 'heart-particle';
+    heart.textContent = ['🎟️', '💖', '✨', '🎉'][Math.floor(Math.random() * 4)];
+    heart.style.left = `${Math.random() * 80 + 10}%`;
+    heart.style.top = '60%';
+    card.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 1500);
+  }
+}
 
 /* ─────────────────────────────────────────────────
    TICK ANIMATION
