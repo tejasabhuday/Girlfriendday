@@ -586,15 +586,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const LOVE_REASONS = [
   "Your smile on late-night calls makes every single mile disappear instantly.",
-  "How you get so passionate and adorable when telling me about your day.",
-  "The way your face lit up with your new haircut on video call.",
+  "The way your face lights up whenever you laugh at my silly jokes.",
+  "How effortlessly beautiful you look, even on 480p video calls at 2am.",
+  "Your smile is genuinely my favorite view in the entire world.",
+  "The way you get so passionate and adorable when telling me about your day.",
   "How photogenic we look together, especially in photobooths!",
-  "The fact that even 480p screen quality can't hide how stunning you are.",
-  "How we turn simple virtual dates into our favorite memories.",
-  "Your voice is literally my favorite sound in the whole world.",
-  "Because you make counting down the days to January completely worth it.",
-  "The way you make me laugh without even trying.",
-  "Simply because you're you, and you're mine. ❤️"
+  "The exact way your smile reaches your eyes when you're super happy.",
+  "Your voice is literally the highlight of my day, every single day.",
+  "How we turn simple screen-time into our favorite date nights.",
+  "Because counting down the days until January 5th is worth every second with you.",
+  "The cute little expressions you make when you're thinking or talking.",
+  "How you make Bangalore and Greater Noida feel like they're right next door.",
+  "Your kindness, your warm heart, and just everything about who you are.",
+  "How you look in your new haircut — absolutely stunning!",
+  "The way you care for me even from miles away.",
+  "How easily you can turn a bad day into a good one with just one call.",
+  "Because you're not just my girlfriend, you're my best friend.",
+  "The way you smile right before you say something funny.",
+  "Because life is just so much brighter and happier with you in it.",
+  "Simply because you're you, and I love you the MOSTESTTT! ❤️"
 ];
 
 let currentReasonIdx = 0;
@@ -605,7 +615,13 @@ function generateReason() {
   const container = document.getElementById('heart-container');
   if (!display || !badge) return;
 
-  currentReasonIdx = (currentReasonIdx + 1) % LOVE_REASONS.length;
+  // Pick a new random index that is different from current
+  let nextIdx;
+  do {
+    nextIdx = Math.floor(Math.random() * LOVE_REASONS.length);
+  } while (nextIdx === currentReasonIdx && LOVE_REASONS.length > 1);
+
+  currentReasonIdx = nextIdx;
 
   display.style.opacity = '0';
   display.style.transform = 'scale(0.95)';
@@ -619,10 +635,10 @@ function generateReason() {
 
   // Burst hearts animation
   if (container) {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const heart = document.createElement('span');
       heart.className = 'heart-particle';
-      heart.textContent = ['💖', '💕', '💗', '❤️', '🌸'][Math.floor(Math.random() * 5)];
+      heart.textContent = ['💖', '💕', '💗', '❤️', '🌸', '✨'][Math.floor(Math.random() * 6)];
       heart.style.left = `${Math.random() * 80 + 10}%`;
       heart.style.top = `${Math.random() * 40 + 40}%`;
       container.appendChild(heart);
