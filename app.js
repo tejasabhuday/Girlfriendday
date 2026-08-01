@@ -11,7 +11,7 @@
    └─────────────────────────────────────────────────
 */
 
-const COUNTDOWN_TARGET = '2027-01-15T12:00:00'; // ← CHANGE TO YOUR ACTUAL JANUARY DATE
+const COUNTDOWN_TARGET = '2027-01-05T12:00:00'; // Set to January 5, 2027
 
 /* ─────────────────────────────────────────────────
    PAGE NAVIGATION
@@ -372,11 +372,11 @@ function spinWheel() {
    ───────────────────────────────────────────────── */
 
 const GAME_CATEGORIES = [
-  'LUDO 🎲',
+  'TABLE TENNIS 🏓',
   'CHESS ♟️',
-  'TRUTH OR DARE 👀',
-  'GARTIC PHONE 🎨',
-  'SCRABBLE 🔤',
+  'MINECRAFT ⛏️',
+  'SKRIBBL 🎨',
+  'LUDO 🎲',
   'ONLINE QUIZ 🧠'
 ];
 
