@@ -49,6 +49,82 @@ body {
   overflow: hidden;
   height: 100dvh;
   width: 100vw;
+  position: relative;
+}
+
+/* ── GLOBAL AMBIENT BACKGROUND TEXTURE ────────────── */
+.global-ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.dot-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.35;
+}
+
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, #ffd0e4 0%, rgba(255,208,228,0) 70%);
+  top: -80px;
+  left: -80px;
+  animation: orbFloat1 14s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, #ffe5ec 0%, rgba(255,229,236,0) 70%);
+  bottom: -100px;
+  right: -100px;
+  animation: orbFloat2 18s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(60px, 80px) scale(1.15); }
+  100% { transform: translate(-30px, 40px) scale(0.9); }
+}
+
+@keyframes orbFloat2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-80px, -60px) scale(1.2); }
+  100% { transform: translate(40px, -30px) scale(0.95); }
+}
+
+/* Floating Sparkles & Hearts across all pages */
+.sparkle {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: sparkleFloat 10s ease-in-out infinite;
+}
+
+.s1 { top: 12%; left: 8%;  animation-delay: 0s;   font-size: 18px; }
+.s2 { top: 75%; left: 12%; animation-delay: 2.5s; font-size: 14px; }
+.s3 { top: 25%; right: 10%; animation-delay: 5s;   font-size: 16px; }
+.s4 { top: 82%; right: 14%; animation-delay: 7.5s; font-size: 20px; }
+.s5 { top: 48%; left: 4%;  animation-delay: 4s;   font-size: 15px; }
+
+@keyframes sparkleFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.3; }
+  50%      { transform: translateY(-20px) rotate(15deg) scale(1.2); opacity: 0.7; }
 }
 
 /* ── PAGES ───────────────────────────────────────── */
