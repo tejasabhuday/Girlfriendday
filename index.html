@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="description" content="A personal digital gift — Happy Girlfriend's Day. Built with love for the miles between Bangalore and Greater Noida." />
+  <title>Happy Girlfriend's Day</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- AUDIO PLAYER -->
+  <!-- ═══════════════════════════════════════════ -->
+  <audio id="bg-audio" loop preload="none">
+    <!-- Lo-fi track will be loaded from a CDN -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+  </audio>
+
+  <button id="audio-btn" aria-label="Toggle music">
+    <span id="audio-icon">♫</span>
+    <span id="audio-label">PLAY</span>
+  </button>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- NAV DOTS -->
+  <!-- ═══════════════════════════════════════════ -->
+  <nav id="page-dots" aria-label="Page navigation">
+    <button class="dot active" data-page="0" aria-label="Go to Page 1: The Connection"></button>
+    <button class="dot" data-page="1" aria-label="Go to Page 2: Our Moments"></button>
+    <button class="dot" data-page="2" aria-label="Go to Page 3: Our Space"></button>
+    <button class="dot" data-page="3" aria-label="Go to Page 4: For You"></button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PAGE WRAPPER -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="pages-wrapper">
+
+    <!-- ─────────────────────────── -->
+    <!-- PAGE 1: THE CONNECTION      -->
+    <!-- ─────────────────────────── -->
+    <section id="page-1" class="page active" aria-label="The Connection">
+
+      <!-- Animated SVG Map Background -->
+      <div class="map-bg">
+        <svg id="connection-svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <!-- Grid dots background -->
+          <defs>
+            <radialGradient id="glow-grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#e8a598" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#e8a598" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="glow-filter">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <filter id="strong-glow">
+              <feGaussianBlur stdDeviation="8" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Subtle dot grid -->
+          <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <circle cx="20" cy="20" r="1" fill="#2a2a2a"/>
+          </pattern>
+          <rect width="800" height="500" fill="url(#dots)" opacity="0.6"/>
+
+          <!-- Connection arc line -->
+          <path id="arc-path"
+            d="M 200,320 Q 400,80 600,200"
+            stroke="#e8a598"
+            stroke-width="1.5"
+            fill="none"
+            opacity="0.7"
+            filter="url(#glow-filter)"
+            stroke-dasharray="600"
+            stroke-dashoffset="600"
+          />
+
+          <!-- Animated particle along path -->
+          <circle id="travel-dot" r="4" fill="#f5c2b6" opacity="0" filter="url(#strong-glow)">
+            <animateMotion dur="3s" repeatCount="indefinite" begin="1s">
+              <mpath href="#arc-path"/>
+            </animateMotion>
+            <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite" begin="1s"/>
+          </circle>
+
+          <!-- Bangalore dot -->
+          <g id="blr-dot" opacity="0">
+            <circle cx="200" cy="320" r="20" fill="url(#glow-grad)"/>
+            <circle cx="200" cy="320" r="5" fill="#e8a598" filter="url(#glow-filter)"/>
+            <circle cx="200" cy="320" r="5" fill="none" stroke="#e8a598" stroke-width="1" opacity="0.5">
+              <animate attributeName="r" values="5;18;5" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <text x="200" y="350" text-anchor="middle" fill="#e8a598" font-family="Inter, sans-serif" font-size="11" letter-spacing="2" opacity="0.8">BANGALORE</text>
+          </g>
+
+          <!-- Greater Noida dot -->
+          <g id="gn-dot" opacity="0">
+            <circle cx="600" cy="200" r="20" fill="url(#glow-grad)"/>
+            <circle cx="600" cy="200" r="5" fill="#e8a598" filter="url(#glow-filter)"/>
+            <circle cx="600" cy="200" r="5" fill="none" stroke="#e8a598" stroke-width="1" opacity="0.5">
+              <animate attributeName="r" values="5;18;5" dur="2.5s" repeatCount="indefinite" begin="1.25s"/>
+              <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite" begin="1.25s"/>
+            </circle>
+            <text x="600" y="178" text-anchor="middle" fill="#e8a598" font-family="Inter, sans-serif" font-size="11" letter-spacing="2" opacity="0.8">GREATER NOIDA</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Content -->
+      <div class="page-content landing-content">
+        <div class="landing-text">
+          <p class="landing-tag reveal-1">— a gift for you —</p>
+          <h1 class="landing-title reveal-2">HAPPY GIRLFRIEND'S DAY.</h1>
+          <p class="landing-sub reveal-3">Miles apart, but never closer.<br/>This is for you.</p>
+          <button id="open-gift-btn" class="cta-btn reveal-4" onclick="navigateTo(1)">
+            <span>OPEN YOUR GIFT</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── -->
+    <!-- PAGE 2: OUR MOMENTS        -->
+    <!-- ─────────────────────────── -->
+    <section id="page-2" class="page" aria-label="Our Moments">
+      <div class="page-content timeline-content">
+        <div class="section-header">
+          <p class="section-tag">page 02</p>
+          <h2 class="section-title">OUR MOMENTS</h2>
+          <p class="section-sub">Hold each moment to reveal it.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-line"></div>
+
+          <!-- Node 1 -->
+          <div class="timeline-node" data-node="0">
+            <div class="node-dot-wrapper">
+              <div class="node-dot">
+                <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="node-connector"></div>
+            </div>
+            <div class="node-content">
+              <span class="node-label">THE BEGINNING</span>
+              <div class="media-frame" id="media-0">
+                <div class="hold-overlay">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <span>HOLD TO REVEAL</span>
+                </div>
+                <div class="media-inner">
+                  <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+                    <p>Your first date photo<br/><span>Replace with your image</span></p>
+                  </div>
+                  <p class="node-caption">"Every great story has a starting point. Out of all the places and all the timing in the world, finding you is still my favorite stroke of luck."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Node 2 -->
+          <div class="timeline-node" data-node="1">
+            <div class="node-dot-wrapper">
+              <div class="node-dot">
+                <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="node-connector"></div>
+            </div>
+            <div class="node-content">
+              <span class="node-label">THE DIGITAL DATES</span>
+              <div class="media-frame" id="media-1">
+                <div class="hold-overlay">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <span>HOLD TO REVEAL</span>
+                </div>
+                <div class="media-inner">
+                  <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/><circle cx="12" cy="13" r="3"/></svg>
+                    <p>FaceTime / virtual date screenshot<br/><span>Replace with your image</span></p>
+                  </div>
+                  <p class="node-caption">"Distance gave us screens, but we made them into movie theaters and dinner tables. Nothing beats seeing your face light up, even if it's through a lens."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Node 3 -->
+          <div class="timeline-node" data-node="2">
+            <div class="node-dot-wrapper">
+              <div class="node-dot">
+                <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+            </div>
+            <div class="node-content">
+              <span class="node-label">TOGETHER AGAIN</span>
+              <div class="media-frame" id="media-2">
+                <div class="hold-overlay">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <span>HOLD TO REVEAL</span>
+                </div>
+                <div class="media-inner">
+                  <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <p>Favorite recent photo together<br/><span>Replace with your image</span></p>
+                  </div>
+                  <p class="node-caption">"The best part about being apart is knowing exactly how good it feels when we finally aren't. Counting down the seconds until the next one."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /timeline -->
+
+        <div class="page-nav-row">
+          <button class="nav-pill" onclick="navigateTo(2)">OUR SPACE →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── -->
+    <!-- PAGE 3: OUR SPACE          -->
+    <!-- ─────────────────────────── -->
+    <section id="page-3" class="page" aria-label="Our Space">
+      <div class="page-content space-content">
+        <div class="section-header">
+          <p class="section-tag">page 03</p>
+          <h2 class="section-title">OUR SPACE</h2>
+        </div>
+
+        <div class="dashboard-grid">
+
+          <!-- Movie Spinner -->
+          <div class="dashboard-card">
+            <h3 class="card-header">NEXT MOVIE NIGHT</h3>
+            <div class="spinner-wrap">
+              <canvas id="spinner-canvas" width="280" height="280" aria-label="Genre spinner wheel"></canvas>
+              <button id="spin-btn" class="spin-trigger" aria-label="Spin the wheel">
+                <span>SPIN</span>
+              </button>
+            </div>
+            <div id="spin-result" class="spin-result" aria-live="polite"></div>
+            <p class="card-sub">Can't decide? Let the wheel pick our next virtual date night.</p>
+          </div>
+
+          <!-- Countdown -->
+          <div class="dashboard-card countdown-card">
+            <h3 class="card-header">THE COUNTDOWN</h3>
+            <div class="countdown-wrap">
+              <div class="countdown-display">
+                <div class="cd-unit">
+                  <span class="cd-num" id="cd-days">00</span>
+                  <span class="cd-label">DAYS</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-unit">
+                  <span class="cd-num" id="cd-hours">00</span>
+                  <span class="cd-label">HRS</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-unit">
+                  <span class="cd-num" id="cd-minutes">00</span>
+                  <span class="cd-label">MIN</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-unit">
+                  <span class="cd-num" id="cd-seconds">00</span>
+                  <span class="cd-label">SEC</span>
+                </div>
+              </div>
+            </div>
+            <p class="card-sub">Until Greater Noida and Bangalore are in the same room again.</p>
+          </div>
+
+        </div>
+
+        <div class="page-nav-row">
+          <button class="nav-pill" onclick="navigateTo(3)">FOR YOU →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────── -->
+    <!-- PAGE 4: FOR YOU             -->
+    <!-- ─────────────────────────── -->
+    <section id="page-4" class="page" aria-label="For You">
+      <div class="page-content envelope-content">
+        <div class="section-header">
+          <p class="section-tag">page 04</p>
+          <h2 class="section-title">FOR YOU</h2>
+        </div>
+
+        <div id="envelope-container">
+          <!-- Envelope SVG -->
+          <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Click to open the letter" onclick="openEnvelope()">
+            <div class="env-body">
+              <div class="env-flap env-flap-bottom"></div>
+              <div class="env-flap env-flap-left"></div>
+              <div class="env-flap env-flap-right"></div>
+              <div class="env-flap env-flap-top" id="env-flap-top"></div>
+              <div class="env-letter" id="env-letter"></div>
+            </div>
+            <div class="env-tap-hint" id="env-tap-hint">
+              <p>TAP TO OPEN</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Letter Overlay -->
+        <div id="letter-overlay" class="letter-overlay" aria-hidden="true">
+          <div class="letter-scroll">
+            <div class="letter-paper">
+              <p class="letter-date">August 2026</p>
+              <p class="letter-para">Happy Girlfriend's Day.</p>
+              <p class="letter-para">I know being in a long-distance relationship isn't always easy. There are days when I just want to reach out and hold your hand, and looking at a screen has to be enough for now. But I wanted to build this space to remind you that the distance between Bangalore and Greater Noida is just a geographic detail. It doesn't change a thing about how I feel about you.</p>
+              <p class="letter-para">Every virtual movie night, every late-night call, and every single moment we spend together—even digitally—means everything to me. You make the miles feel entirely worth it. Thank you for being you, and thank you for being mine.</p>
+              <p class="letter-para">I love you.</p>
+              <p class="letter-sig">— Tejas</p>
+              <button class="close-letter-btn" onclick="closeLetter()" aria-label="Close letter">✕</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /pages-wrapper -->
+
+  <script src="app.js"></script>
+</body>
+</html>
